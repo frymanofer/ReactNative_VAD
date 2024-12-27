@@ -14,6 +14,42 @@ This is a **Voice Activity Detection (VAD)** package for React Native. VAD deter
 
 For example, VAD can monitor audio streams to detect speech segments and trigger specific actions when voice activity is detected.
 
+See full use cases below.
+
+## Full use cases:
+
+- **Speech Recognition Pre-Processing:**
+
+VAD libraries are used to filter out silence and background noise from audio streams, reducing the amount of data sent to speech recognition engines. This optimizes performance and accuracy.
+
+- **Real-Time Voice Communication:**
+
+Applications like video conferencing, online gaming, and telephony use VAD to activate microphones only when voice is detected, saving bandwidth and improving privacy.
+
+- **Voice-Controlled Interfaces:**
+
+These libraries enable web apps with voice-triggered commands, such as controlling smart devices or interacting with apps hands-free.
+
+- **Audio Transcription:
+
+Developers use VAD to preprocess audio for transcription services by isolating speech segments, ensuring more accurate results.
+
+- **Audio Recording:**
+
+VAD is used in recording applications to automatically start/stop recording based on voice activity, which helps save storage and simplifies editing.
+
+- **Interactive Learning Tools:**
+
+Educational platforms with voice-enabled features (e.g., language learning apps) use VAD to detect when users are speaking for interactive exercises.
+
+- **Accessibility Features:**
+
+VAD helps enable voice-based navigation and control for people with disabilities, allowing them to interact with applications using voice commands.
+
+- **Voice Logging and Monitoring:**
+
+In security, analytics, or call center applications, VAD is used to detect voice activity in recordings for further processing or analysis.
+
 ## Latest news
 
 - **New npm install:** Now you can integrate Davoice VAD without any additional integrations by using "npm install react-native-vad". Make sure you install version >= 1.0.25.
