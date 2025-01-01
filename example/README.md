@@ -1,79 +1,207 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# ReactNative VAD by Davoice
 
-# Getting Started
+By [DaVoice.io](https://davoice.io)
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+Welcome to **Davoice VAD (Voice Activity Detection)** – A solution for detecting speech activity designed by **DaVoice.io**.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## About this project
 
-To start Metro, run the following command from the _root_ of your React Native project:
+This is a **Voice Activity Detection (VAD)** package for React Native. VAD determines if a segment of audio contains speech or is just silence or background noise. It enables applications to:
+
+- Activate on detected speech activity.
+- Filter out irrelevant parts of audio to focus on meaningful speech.
+
+For example, VAD can monitor audio streams to detect speech segments and trigger specific actions when voice activity is detected.
+
+See full use cases below.
+
+## Full use cases:
+
+- **Speech Recognition Pre-Processing:**
+
+VAD libraries are used to filter out silence and background noise from audio streams, reducing the amount of data sent to speech recognition engines. This optimizes performance and accuracy.
+
+- **Real-Time Voice Communication:**
+
+Applications like video conferencing, online gaming, and telephony use VAD to activate microphones only when voice is detected, saving bandwidth and improving privacy.
+
+- **Voice-Controlled Interfaces:**
+
+These libraries enable web apps with voice-triggered commands, such as controlling smart devices or interacting with apps hands-free.
+
+- **Audio Transcription:**
+
+Developers use VAD to preprocess audio for transcription services by isolating speech segments, ensuring more accurate results.
+
+- **Audio Recording:**
+
+VAD is used in recording applications to automatically start/stop recording based on voice activity, which helps save storage and simplifies editing.
+
+- **Interactive Learning Tools:**
+
+Educational platforms with voice-enabled features (e.g., language learning apps) use VAD to detect when users are speaking for interactive exercises.
+
+- **Accessibility Features:**
+
+VAD helps enable voice-based navigation and control for people with disabilities, allowing them to interact with applications using voice commands.
+
+- **Voice Logging and Monitoring:**
+
+In security, analytics, or call center applications, VAD is used to detect voice activity in recordings for further processing or analysis.
+
+## Latest news
+
+- **New npm install:** Now you can integrate Davoice VAD without any additional integrations by using "npm install react-native-vad". Make sure you install version >= 1.0.25.
+
+- **New Car Parking Example:** Checkout our new Voice Activated Car Parking example, with voice detection both in Foreground and Background: example\_car\_parking/.
+
+## Features
+
+- **High Accuracy:** Our advanced models deliver precise voice activity detection.
+- **Easy to deploy with React Native:** Check out our example: "rn\_example/DetectingVAD.js". With a few simple lines of code, you can enable voice activity detection in your app.
+- **Cross-Platform Support:** Integrate Davoice VAD into the React-Native Framework. Both iOS and Android are supported.
+- **Low Latency:** Experience near-instantaneous voice activity detection.
+
+## Platforms and Supported Languages
+
+- **React-Native Android:** React Native Wrapper for Android.
+- **React-Native iOS:** React Native Wrapper for iOS.
+
+## Contact
+
+For any questions, requirements, or support for React-Native, please contact us at [info@davoice.io](mailto\:info@davoice.io).
+
+## Installation and Usage
+
+### Simply using npm install - package
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+npm install react-native-vad
 ```
 
-## Step 2: Start your Application
+### On Android:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Please add the following to android/build.gradle:
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```gradle
+allprojects {
+    repositories {
+        // react-native-vad added
+        maven { url "${project(":react-native-vad").projectDir}/libs" }
+    }
+}
 ```
 
-### For iOS
+See example\_npm for a specific example of using the code.
 
-```bash
-# using npm
-npm run ios
+### Demo Instructions
 
-# OR using Yarn
-yarn ios
+To run the demo:
+
+1. Clone the repository:
+
+   ```
+   git clone https://[YourGitName]:[Token].com/frymanofer/ReactNative_VAD.git
+   ```
+
+2. Navigate to the example directory:
+
+   ```
+   cd example_npm
+   ```
+
+3. For Android:
+
+   ```
+   npx react-native run-android
+   ```
+
+   Depending on your system, you may be required to press "a" for Android.
+
+   **Note:** If you don't have an Android environment setup (Gradle, Android device or Emulator, Java, etc.) and need help, please contact us at [ofer@davoice.io](mailto\:ofer@davoice.io).
+
+4. For iOS:
+
+   ```
+   npx react-native run-ios
+   ```
+
+   Depending on your system, you may be required to press "i" for iOS.
+
+   You may need to:
+
+   ```
+   cd ios && pod cache clean --all && pod deintegrate && pod install --repo-update
+   ```
+
+   Then open Xcode and run in Xcode.
+
+   **Note:** If you don't have an iOS environment setup (Xcode, CocoaPods, iOS device or Emulator, etc.) and need help, please contact us at [ofer@davoice.io](mailto\:ofer@davoice.io).
+
+## Screenshots from the Demo App
+
+1. **Make sure you allow Audio Permission:**
+   The app needs to ask for audio permission; ensure you allow it as it is necessary for voice activity detection.
+
+
+
+1. **If You are using Android Emulator - make sure you enable Microphone as below:**
+   The settings screen showing virtual microphone configuration in the Android emulator.
+
+
+
+1. **Listening for Voice Activity:**
+   The app is actively detecting speech activity.
+
+
+
+1. **Voice Activity Detected:**
+   The app has detected speech activity.
+
+
+
+### Usage Example
+
+Below is a simple Voice Activity Detection example using npm install react-native-vad:
+
+```javascript
+import useVAD from 'react-native-vad';
+
+function App(): React.JSX.Element {
+    const { stopListening, startVAD } = useVAD();
+
+    const onSpeechDetected = async () => {
+        console.log('Voice activity detected!');
+        // Handle speech activity
+    };
+
+    const initializeVAD = async () => {
+        try {
+            // Wait for audio permission to be granted
+            await startVAD(onSpeechDetected);
+        } catch (error) {
+            console.error('Error during VAD initialization:', error);
+        }
+    };
+
+    useEffect(() => {
+        initializeVAD();
+    }, []);
+
+    return <Text>Voice Activity Detection Active</Text>;
+}
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Benchmark
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Our customers have benchmarked our technology against leading solutions, including Picovoice Porcupine, Snowboy, Pocketsphinx, Sensory, and others. In several tests, our performance was comparable to Picovoice Porcupine, occasionally surpassing it. For detailed references or specific benchmark results, please contact us at [ofer@davoice.io](mailto\:ofer@davoice.io).
 
-## Step 3: Modifying your App
+## Activating Microphone while the app operates in the background or during shutdown/closure.
 
-Now that you have successfully run the app, let's modify it.
+This example in the Git repository enables Android functionality in both the foreground and background, and iOS functionality in the foreground. However, we have developed an advanced SDK that allows the microphone to be activated from a complete shutdown state on Android and from the background state on iOS. If you require this capability for your app, please reach out to us at [ofer@davoice.io](mailto\:ofer@davoice.io).
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+Can you share in .MD format?
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
