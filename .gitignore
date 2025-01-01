@@ -97,3 +97,6 @@ fastlane/report.xml
 x
 diff_files.sh
 example/android/.gradle/*
+example/package-lock.json
+example/package-lock.json
+example/ios/Podfile.lock

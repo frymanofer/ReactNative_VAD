@@ -139,7 +139,7 @@ function removeEventListener(eventListener: any) {
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [isFlashing, setIsFlashing] = useState(false);
-  const [voiceProbability, setVoiceProbability] = useState(0);
+  const [voiceProbability, setVoiceProbability] = useState("0%");
   const [timeSinceVoice, setTimeSinceVoice] = useState("N/A");
 
 // If you use useModel
@@ -206,7 +206,7 @@ function App(): React.JSX.Element {
     const updateVoiceProps = async () => {
       try {
         const voiceProps = await myInstance.getVoiceProps();
-        setVoiceProbability(voiceProps.voiceProbability);
+        setVoiceProbability((voiceProps.voiceProbability * 100).toFixed(2) + '%');
         var lastTime = voiceProps.lastTimeHumanVoiceHeard;
         if (lastTime < 1000) {
           lastTime = 0;
@@ -283,7 +283,7 @@ return (
       style={[styles.container, 
       { backgroundColor: 
         isFlashing ? (isDarkMode ? '#ff4d4d' : '#ffcccc') : isDarkMode ? Colors.black : Colors.white }]}>
-        <Text style={styles.title}>Voice Probability: {voiceProbability.toFixed(2)}</Text>
+        <Text style={styles.title}>Voice Probability: {voiceProbability}</Text>
         <Text style={styles.title}>Time of last Human Voice: {timeSinceVoice}</Text>
       </View>
     </ScrollView>

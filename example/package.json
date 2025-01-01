@@ -14,7 +14,7 @@
     "react-native": "0.76.5",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-permissions": "^5.2.1",
-    "react-native-vad": "^1.0.22"
+    "react-native-vad": "^1.0.25"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
