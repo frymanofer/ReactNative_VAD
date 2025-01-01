@@ -30,7 +30,7 @@ Applications like video conferencing, online gaming, and telephony use VAD to ac
 
 These libraries enable web apps with voice-triggered commands, such as controlling smart devices or interacting with apps hands-free.
 
-- **Audio Transcription:
+- **Audio Transcription:**
 
 Developers use VAD to preprocess audio for transcription services by isolating speech segments, ensuring more accurate results.
 
