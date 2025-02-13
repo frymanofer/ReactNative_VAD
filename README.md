@@ -352,15 +352,92 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Benchmark
-
-Our customers have benchmarked our technology against leading solutions, including Picovoice Porcupine, Snowboy, Pocketsphinx, Sensory, and others. In several tests, our performance was comparable to Picovoice Porcupine, occasionally surpassing it. For detailed references or specific benchmark results, please contact us at [ofer@davoice.io](mailto\:ofer@davoice.io).
-
 ## Activating Microphone while the app operates in the background or during shutdown/closure.
+This example in the Git repository enables Android functionality in both the foreground and background, and iOS functionality in the foreground. However, we have developed an advanced SDK that allows the microphone to be activated from a complete shutdown state on Android and from the background state on iOS. If you require this capability for your app, please reach out to us at ofer@davoice.io.
 
-This example in the Git repository enables Android functionality in both the foreground and background, and iOS functionality in the foreground. However, we have developed an advanced SDK that allows the microphone to be activated from a complete shutdown state on Android and from the background state on iOS. If you require this capability for your app, please reach out to us at [ofer@davoice.io](mailto\:ofer@davoice.io).
+#### Example for iOS Background State
 
-Can you share in .MD format?
+The example below, built in React Native, demonstrates this approach. The function backgroundMicEmptyListener() creates a minimal listener with negligible CPU impact, only processing the function call and return.
 
+Apple restricts background microphone access for privacy and battery efficiency. However, certain applications, such as security apps, car controlling apps, apps for the blind or visually impaired may require this functionality.
+
+Below is an example for one of the workarounds we have done in order to activate microphone with an empty listener. This approach avoids unnecessary battery usage until real audio capture is needed, at which point you can swap the placeholder listener with the actual microphone callback.
+
+The example below, built in React Native, demonstrates this approach. The function backgroundMicEmptyListener() creates a minimal listener with negligible CPU impact, only processing the function call and return.
+
+```javascript
+const handleAppStateChange = (nextAppState) => {
+  console.log("handleAppStateChange(): ", nextAppState);
+  
+  if (nextAppState === 'background') {
+    console.log("nextAppState === 'background'");
+    BackgroundJob.start(backgroundMicEmptyListener, backgroundOptions)
+      .then(() => {
+        console.log('Background job started successfully');
+      })
+      .catch((err) => {
+        console.error('Error starting background job:', err);
+      });
+  }
+}
+```
+
+### Key words
+
+"Voice activation detection",
+"VAD",
+"React Native VAD",
+"React Native Voice Activation Detection",
+
+DaVoice.io Voice commands / Wake words / Voice to Intent / keyword detection npm for Android and IOS.
+"Wake word detection github"
+"Wake Word" 
+"keyword detection"
+"Phrase Recognition"
+"Phrase Spotting"
+“Voice triggered”
+“hotword”
+“trigger word”
+"react-native wake word",
+"Wake word detection github",
+"Wake word generator",
+"Custom wake word",
+"voice commands",
+"wake word",
+"wakeword",
+"wake words",
+"keyword detection",
+"keyword spotting",
+"speech to intent",
+"voice to intent",
+"phrase spotting",
+"react native wake word",
+"Davoice.io wake word",
+"Davoice wake word",
+"Davoice react native wake word",
+"Davoice react-native wake word",
+"wake",
+"word",
+"Voice Commands Recognition",
+"lightweight Voice Commands Recognition",
+"customized lightweight Voice Commands Recognition",
+"rn wake word"
+
+## Links
+
+- **voice activation detection "VAD" npm package:** https://www.npmjs.com/package/react-native-vad
+
+Here are wakeword detection GitHub links per platform:
+
+- **For Python:** https://github.com/frymanofer/Python_WakeWordDetection
+- **Web / JS / Angular / React:** https://github.com/frymanofer/Web_WakeWordDetection/tree/main
+- **For React Native:** [ReactNative_WakeWordDetection](https://github.com/frymanofer/ReactNative_WakeWordDetection)
+- **For Flutter:** [https://github.com/frymanofer/Flutter_WakeWordDetection]
+- **For Android:** [KeywordsDetectionAndroidLibrary](https://github.com/frymanofer/KeywordsDetectionAndroidLibrary)
+- **For iOS framework:** 
+  - With React Native bridge: [KeyWordDetectionIOSFramework](https://github.com/frymanofer/KeyWordDetectionIOSFramework)
+  - Sole Framework: [KeyWordDetection](https://github.com/frymanofer/KeyWordDetection)
+ 
+  
 
 
