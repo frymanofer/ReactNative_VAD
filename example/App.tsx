@@ -111,7 +111,7 @@ function App(): React.JSX.Element {
 
         //eventListener = await set_callback(myInstance, keywordCallback);
         const isLicensed = await myInstance.setVADDetectionLicense(
-          "MTczOTU3MDQwMDAwMA==-+2/cH2HBQz3/SsDidS6qvIgc8KxGH5cbvSVM/6qmk3Q=");
+          "MTc2MTg2MTYwMDAwMA==-9Ast1trO/HOM6Gy0DyvVC8GIAuFj3lD+e4oY2m2si48=");
           console.log("After setting License");
           console.log("After setting License");
           console.log("After setting License");

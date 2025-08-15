@@ -21,7 +21,7 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-permissions": "^5.2.1",
     "react-native-svg": "^15.10.1",
-    "react-native-vad": "^1.0.37"
+    "react-native-vad": "^1.0.40"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
